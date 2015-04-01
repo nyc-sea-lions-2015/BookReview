@@ -1,5 +1,4 @@
 
-
 get '/review/:id/comment/_new' do
   @current_review = Review.find_by(id: params[:id])
 
@@ -28,12 +27,27 @@ end
 
 post '/review/:id/comment' do
   @new_comment = Comment.new(content: params[:content], review_id: params[:id], user_id: current_user.id)
+
   if @new_comment.save!
     redirect "/review/#{@new_comment.review.id}"
   else
     redirect '/review/:id/comment/_new'
   end
 end
+
+# Attempt at figuring out route for ajax request
+# post '/review/:id/comment.json' do
+#   @new_comment = Comment.new(content: params[:content], review_id: params[:id], user_id: current_user.id)
+
+#   if @new_comment.save!
+#     @new_comment.json
+#     redirect "/review/#{@new_comment.review.id}"
+#   else
+#     redirect '/review/:id/comment/_new'
+#   end
+# end
+
+
 
 delete '/review/:id/comment/:comment_id' do
   @existing_comment = Comment.find_by(id: params[:comment_id])
