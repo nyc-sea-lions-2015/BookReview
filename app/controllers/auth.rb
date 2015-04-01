@@ -1,3 +1,5 @@
+require 'pry'
+
 get '/auth/signin' do
   erb :'auth/login'
 end
