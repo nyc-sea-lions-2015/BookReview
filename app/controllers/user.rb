@@ -1,4 +1,5 @@
 get '/user/:id' do
+  @all_reviews = current_user.reviews
   erb :"user/show"
 end
 

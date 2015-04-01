@@ -1,2 +1,18 @@
-<h2><%=current_user.name%>'s Book Reviews</h2>
+<h2><%=current_user.name%>'s Book Reflections</h2>
 
+<ol>
+  <% @all_reviews.each do |review| %>
+    <li>
+      <a href="">Reflection on: <%=review.book_title%></a>
+      <%=review.created_at%>
+    </li>
+  <%end %>
+</ol>
+
+<form action="/review/new" method="get">
+  <button type="submit" >Create Reflection</button>
+</form>
+
+<form action="" method="get">
+  <button type="submit" >See Other Reflections</button>
+</form>
