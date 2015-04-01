@@ -6,8 +6,9 @@ class CreateReviews < ActiveRecord::Migration
       t.date :start_date
       t.date :finish_date
       t.text :review_content, null: false
-      t.integer :book_rating null: false
+      t.integer :book_rating, null: false
       t.references :user, null: false
       t.timestamps
+    end
   end
 end
