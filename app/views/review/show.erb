@@ -1,0 +1,56 @@
+
+
+<h2><%=@current_review.user.name%>'s Reflection on: <%=@current_review.book_title%></h2>
+
+<p>Book's Author: <%=@current_review.author%><p>
+
+
+<p>Personal Rating: <%=@current_review.book_rating%><p>
+<p>Started Reading This Title: <%=@current_review.start_date%><p>
+<p>Finished Reading This Title: <%=@current_review.finish_date%><p>
+<p>Finished Reading This Title: <%=@current_review.finish_date%><p>
+
+<h4>Reflection</h4>
+<%=@current_review.review_content%>
+
+<div id="comment_header">
+<h4>Comments</h4>
+</div>
+
+<form id="add_comment" action="/review/<%=@current_review.id%>/comment/_new" method="get">
+  <input id="comment_button" type="submit" value="Add Comment" />
+</form>
+
+
+
+<div id="comment_list">
+  <ol>
+  <%@current_review.comments.each do |comment|%>
+    <li>
+      <%=comment.content%>
+      <br>
+      <p> Written By: <a href="/user/<%=comment.user.id%>"><%=comment.user.name%></a> <p>
+        <!-- Include logic for only owner of comment to edit comment -->
+
+      <form action="/comment/<%=comment.id%>/edit" method="get">
+        <button type="submit">Edit Comment</button>
+      </form>
+      <br>
+      <form action="/review/<%=@current_review.id%>/comment/<%=comment.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete Comment</button>
+      </form>
+      <br>
+
+    </li>
+  <%end%>
+</ol>
+</div>
+
+
+
+
+
+
+
+

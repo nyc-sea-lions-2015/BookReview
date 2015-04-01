@@ -1,0 +1,10 @@
+<h2>Recent Reflections from Other Book Lovers</h2>
+
+<ol>
+  <% @all_reviews.each do |review| %>
+    <li>
+      <a href="/review/<%=review.id%>"><%=review.book_title%></a>
+      <p>By: <a href="/user/<%=review.user.id%>"><%=review.user.name%></a> </p>
+    </li>
+    <%end%>
+</ol>

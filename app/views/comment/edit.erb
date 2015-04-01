@@ -1,0 +1,7 @@
+<p>Edit Your Comment:</p>
+
+<form action="/comment/<%=@current_comment.id%>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="text" name="content" value="<%=@current_comment.content%>"> <br> <br>
+  <button type="submit">Submit Edited Comment</button>
+</form>
