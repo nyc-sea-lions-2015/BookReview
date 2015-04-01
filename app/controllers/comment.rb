@@ -1,6 +1,12 @@
 get '/review/:id/comment/_new' do
   @current_review = Review.find_by(id: params[:id])
-  erb :"comment/_new"
+
+  if  request.xhr?
+    return erb :"comment/_new", layout: false
+  else
+    erb :"comment/_new"
+  end
+
 end
 
 get '/comment/:id/edit' do

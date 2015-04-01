@@ -13,7 +13,9 @@
 <h4>Reflection</h4>
 <%=@current_review.review_content%>
 
+<div id="comment_header">
 <h4>Comments</h4>
+</div>
 
 <form id="add_comment" action="/review/<%=@current_review.id%>/comment/_new" method="get">
   <button type="submit">Add Comment</button>
