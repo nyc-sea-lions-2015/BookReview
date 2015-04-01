@@ -1,7 +1,10 @@
-require 'pry'
-
 get '/auth/signin' do
   erb :'auth/login'
+end
+
+get '/auth/logout' do
+  session[:user_id] = nil
+  redirect '/'
 end
 
 put '/auth/login' do
