@@ -1,3 +1,5 @@
 class Users < ActiveRecord::Base
-  # Remember to create a migration!
+  has_secure_password
+  has_many :reviews
+  has_many :comments
 end
