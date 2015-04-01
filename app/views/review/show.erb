@@ -27,7 +27,18 @@
     <li>
       <%=comment.content%>
       <br>
-      Written By: <a href="/user/<%=comment.user.id%>"><%=comment.user.name%></a>
+      <p> Written By: <a href="/user/<%=comment.user.id%>"><%=comment.user.name%></a> <p>
+        <!-- Include logic for only owner of comment to edit comment -->
+
+      <form action="/comment/<%=comment.id%>/edit" method="get">
+        <button type="submit">Edit Comment</button>
+      </form>
+
+      <form action="/review/<%=@current_review.id%>/comment/<%=comment.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete Comment</button>
+      </form>
+
     </li>
   <%end%>
 </ol>
