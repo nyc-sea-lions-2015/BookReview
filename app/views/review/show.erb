@@ -1,1 +1,41 @@
 <p> On reflection show page <p>
+
+<h2><%=@current_reflection.user.name%>'s Reflection on: <%=@current_reflection.book_title%></h2>
+
+<p>Book's Author: <%=@current_reflection.author%><p>
+
+
+<p>Personal Rating: <%=@current_reflection.book_rating%><p>
+<p>Started Reading This Title: <%=@current_reflection.start_date%><p>
+<p>Finished Reading This Title: <%=@current_reflection.finish_date%><p>
+<p>Finished Reading This Title: <%=@current_reflection.finish_date%><p>
+
+<h4>Reflection</h4>
+<%=@current_reflection.review_content%>
+
+<h4>Comments</h4>
+
+<form action="/comment/new" method="get">
+  <button type="submit">Add Comment</button>
+</form>
+
+
+<div id="comment_list">
+  <ol>
+  <%@current_reflection.comments.each do |comment|%>
+    <li>
+      <%=comment.content%>
+      <br>
+      Written By: <a href="/user/<%=comment.user.id%>"><%=comment.user.name%></a>
+    </li>
+  <%end%>
+</ol>
+</div>
+
+
+
+
+
+
+
+

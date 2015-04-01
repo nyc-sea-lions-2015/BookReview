@@ -3,10 +3,10 @@
 <ol>
   <% @all_reviews.each do |review| %>
     <li>
-      <a href="">Reflection on: <%=review.book_title%></a>
+      <a href="/review/<%=review.id%>">Reflection on: <%=review.book_title%></a>
       <%=review.created_at%>
     </li>
-  <%end %>
+  <%end%>
 </ol>
 
 <form action="/review/new" method="get">
