@@ -14,6 +14,7 @@ post '/review/new' do
 end
 
 get '/review/all' do
+  @all_reviews = Review.all
   erb :'review/all'
 end
 
