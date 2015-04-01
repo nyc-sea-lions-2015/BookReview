@@ -1,4 +1,4 @@
-<p> On reflection show page <p>
+
 
 <h2><%=@current_review.user.name%>'s Reflection on: <%=@current_review.book_title%></h2>
 
@@ -18,7 +18,7 @@
 </div>
 
 <form id="add_comment" action="/review/<%=@current_review.id%>/comment/_new" method="get">
-  <button type="submit">Add Comment</button>
+  <input id="comment_button" type="submit" value="Add Comment" />
 </form>
 
 
@@ -35,11 +35,12 @@
       <form action="/comment/<%=comment.id%>/edit" method="get">
         <button type="submit">Edit Comment</button>
       </form>
-
+      <br>
       <form action="/review/<%=@current_review.id%>/comment/<%=comment.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
         <button type="submit">Delete Comment</button>
       </form>
+      <br>
 
     </li>
   <%end%>

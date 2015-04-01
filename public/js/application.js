@@ -1,16 +1,18 @@
 $(document).ready(function() {
 
 
-  $("#add_comment").on('click', function(event){
+  $("form#add_comment").on('submit', function(event){
 
     event.preventDefault();
+    var target = event.target
 
     $.ajax({
-      url: "/review/<%=@current_review.id%>/comment/_new"
+      url: target.action ,
       method: "get",
       dataType: "html"
 
     }).done(function(data){
+      console.log(data);
       $("#comment_header").append(data);
     });
   });

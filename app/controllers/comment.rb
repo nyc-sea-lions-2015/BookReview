@@ -1,12 +1,13 @@
+
+
 get '/review/:id/comment/_new' do
   @current_review = Review.find_by(id: params[:id])
 
-  if  request.xhr?
+  if request.xhr?
     return erb :"comment/_new", layout: false
   else
     erb :"comment/_new"
   end
-
 end
 
 get '/comment/:id/edit' do
@@ -38,6 +39,4 @@ delete '/review/:id/comment/:comment_id' do
   @existing_comment = Comment.find_by(id: params[:comment_id])
   @existing_comment.destroy
   redirect "review/#{params[:id]}"
-
-
 end

@@ -13,7 +13,13 @@ post '/review/new' do
 
 end
 
+get '/review/all' do
+  erb :'review/all'
+end
+
 get '/review/:id' do
   @current_review = Review.find_by(id: params[:id])
   erb :'review/show'
 end
+
+
