@@ -14,6 +14,6 @@ post '/review/new' do
 end
 
 get '/review/:id' do
-  @current_reflection = Review.find_by(id: params[:id])
+  @current_review = Review.find_by(id: params[:id])
   erb :'review/show'
 end
