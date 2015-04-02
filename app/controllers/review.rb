@@ -1,7 +1,10 @@
+# This is the form to create a new thing (RIGHT)
 get '/review/new' do
   erb :'review/new'
 end
 
+# post '/reviews'
+# http://guides.rubyonrails.org/routing.html#crud-verbs-and-actions
 post '/review/new' do
   @new_post = Review.new(book_title: params[:book_title], author: params[:author], start_date: params[:start_date], finish_date: params[:finish_date], review_content: params[:review_content], book_rating: params[:book_rating], user_id: current_user.id)
 
@@ -13,6 +16,7 @@ post '/review/new' do
 
 end
 
+# get /reviews
 get '/review/all' do
   @all_reviews = Review.all
   erb :'review/all'

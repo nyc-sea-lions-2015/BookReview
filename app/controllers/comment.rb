@@ -1,12 +1,18 @@
 
 get '/review/:id/comment/_new' do
-  @current_review = Review.find_by(id: params[:id])
+  @parent_review_id = Review.find_by(id: params[:id]).id
 
   if request.xhr?
     return erb :"comment/_new", layout: false
   else
     erb :"comment/_new"
   end
+end
+
+post '/review/:id/comment/_new' do
+  comment = Review.find(params[:id]).comments.create(content: params[:content], user_id: current_user.id)
+  comment.save
+  comment.to_json
 end
 
 get '/comment/:id/edit' do
@@ -26,6 +32,10 @@ put '/comment/:id' do
 end
 
 post '/review/:id/comment' do
+  # OR!!!! Leverage the power of Active Record
+  # http://guides.rubyonrails.org/association_basics.html#has-many-association-reference
+  # @new_comment = Review.find(params[:id]).comments.build(user_id: current_user.id, content: params[:content])
+
   @new_comment = Comment.new(content: params[:content], review_id: params[:id], user_id: current_user.id)
 
   if @new_comment.save!
@@ -34,20 +44,6 @@ post '/review/:id/comment' do
     redirect '/review/:id/comment/_new'
   end
 end
-
-# Attempt at figuring out route for ajax request
-# post '/review/:id/comment.json' do
-#   @new_comment = Comment.new(content: params[:content], review_id: params[:id], user_id: current_user.id)
-
-#   if @new_comment.save!
-#     @new_comment.json
-#     redirect "/review/#{@new_comment.review.id}"
-#   else
-#     redirect '/review/:id/comment/_new'
-#   end
-# end
-
-
 
 delete '/review/:id/comment/:comment_id' do
   @existing_comment = Comment.find_by(id: params[:comment_id])
